@@ -1,0 +1,12 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "name": "wda",
+      "description": "wadaw",
+      "supplier": "wadaw",
+      "price": "wadwa",
+      "amont": "wad"
+    }
+  ]
+}

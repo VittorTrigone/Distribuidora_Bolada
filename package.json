@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start-server1": "json-server --watch cliente.json --port 3001",
+    "start-server2": "json-server --watch fornecedor.json --port 3002",
+    "start": "npm-run-all -p start-server1 start-server2"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +20,11 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^15.0.0",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.3",
+    "ngx-mask": "^14.0.0",
+    "npm-run-all": "^4.1.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -26,6 +33,7 @@
     "@angular-devkit/build-angular": "^16.0.3",
     "@angular/cli": "~16.0.3",
     "@angular/compiler-cli": "^16.0.0",
+    "@angular/localize": "^16.0.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

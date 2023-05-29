@@ -1,0 +1,121 @@
+<div class="text-center mb-5 mt-5">
+    <div class="display-6">Clientes</div>
+    <div class="mb-5 mt-5"><button (click)="open(CadastrarCliente)" type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar</button></div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center border-top">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col" class="teste">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes">
+                <td scope="row">{{cliente.id}}</td>
+                <td>{{cliente.name}}</td>
+                <td>{{cliente.description}}</td>
+                <td>{{cliente.supplier}}</td>
+                <td>{{cliente.price}}</td>
+                <td>{{cliente.amont}}</td>
+                <td>
+                    <button (click)="open(EditarCliente)" class="btn btn-outline-primary me-1"
+                        (click)="edit(cliente)">Editar</button>
+                    <button class="btn btn-outline-danger" (click)="delete(cliente)">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #CadastrarCliente let-modal>
+    <div class="text-center mt-3">
+        <h4 class="display-6">Cadastrar Clientes</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row modal-footer">
+            <div class="col-8 m-auto">
+                <form [formGroup]="formGroupCliente">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome:</label>
+                        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+
+                        <div *ngIf="submitted && name.invalid">
+                            <small class="text-danger">Nome Invalido!</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição:</label>
+                        <input type="text" formControlName="description" class="form-control" id="description"
+                            placeholder="Descrição">
+                    </div>
+                    <div class="mb-3">
+                        <label for="supplier" class="form-label">Fornecedor:</label>
+                        <input type="text" formControlName="supplier" class="form-control" id="supplier"
+                            placeholder="Fornecedor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preço:</label>
+                        <input type="text" formControlName="price" class="form-control" id="price" placeholder="Preço">
+                    </div>
+                    <div class="mb-3">
+                        <label for="amont" class="form-label">Quantidade:</label>
+                        <input type="text" formControlName="amont" class="form-control" id="amont"
+                            placeholder="Quantidade">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+</ng-template>
+
+<ng-template #EditarCliente let-modal>
+    <div class="text-center mt-3">
+        <h4 class="display-6">Editar Cliente</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row modal-footer">
+            <div class="col-8 m-auto">
+                <form [formGroup]="formGroupCliente">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome:</label>
+                        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição:</label>
+                        <input type="text" formControlName="description" class="form-control" id="description"
+                            placeholder="Descrição">
+                    </div>
+                    <div class="mb-3">
+                        <label for="supplier" class="form-label">Fornecedor:</label>
+                        <input type="text" formControlName="supplier" class="form-control" id="supplier"
+                            placeholder="Fornecedor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preço:</label>
+                        <input type="text" formControlName="price" class="form-control" id="price" placeholder="Preço">
+                    </div>
+                    <div class="mb-3">
+                        <label for="amont" class="form-label">Quantidade:</label>
+                        <input type="text" formControlName="amont" class="form-control" id="amont"
+                            placeholder="Quantidade">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+</ng-template>
