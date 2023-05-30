@@ -18,6 +18,15 @@ export class FornecedoresComponent {
   isEditing: boolean = false;
   formGroupFornecedor: FormGroup;
   submitted: boolean = false;
+  mostrarInput = false;
+
+  checkboxClicked() {
+    if (!this.mostrarInput) {
+      this.mostrarInput = true;
+    } else {
+      this.mostrarInput = false;
+    }
+  }
 
   telefoneMask = '(00) 0 0000-0000';
   cnpjMask = '00.000.000/0000-00';
@@ -94,7 +103,10 @@ export class FornecedoresComponent {
   }
 
   open(content: any) {
-    this.modalService.open(content);
+    this.modalService.open(content, {
+      centered: true,
+      size: 'xl' // Defina o tamanho desejado, por exemplo, 'xl' para extra large
+    });
   }
 
   get name(): any {
