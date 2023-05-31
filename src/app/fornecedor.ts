@@ -7,4 +7,6 @@ export interface Fornecedor {
     endereco : string;
     estado : string;
     cidade: string;
+    tForn: string;
+    termo: boolean;
 }

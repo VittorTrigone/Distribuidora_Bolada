@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cliente } from '../cliente';
-import { ClienteService } from '../cliente.service';
+import { DadosService } from '../dados.service';
+
+import { CpfMaskPipe } from './cpf-mask.pipe';
 
 @Component({
   selector: 'app-clientes',
@@ -16,15 +18,16 @@ export class ClientesComponent {
   formGroupCliente: FormGroup;
   submitted: boolean = false;
 
-  constructor(private clienteService: ClienteService,
+  cpfMask = '000.000.000-00';
+
+  constructor(private dadosService: DadosService,
     private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.formGroupCliente = formBuilder.group({
       id: [''],
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      supplier: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      amont: ['', [Validators.required]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      cpf: ['', [Validators.required]],
+      genero: ['', [Validators.required]]
     })
   }
 
@@ -33,7 +36,7 @@ export class ClientesComponent {
   }
 
   loadClientes() {
-    this.clienteService.getCliente().subscribe(
+    this.dadosService.getCliente().subscribe(
       {
         next: data => this.clientes = data
       }
@@ -45,7 +48,7 @@ export class ClientesComponent {
 
     if (this.formGroupCliente.valid) {
       if (this.isEditing) {
-        this.clienteService.update(this.formGroupCliente.value).subscribe(
+        this.dadosService.updateCli(this.formGroupCliente.value).subscribe(
           {
             next: () => {
               this.loadClientes();
@@ -59,7 +62,7 @@ export class ClientesComponent {
         )
       }
       else {
-        this.clienteService.save(this.formGroupCliente.value).subscribe(
+        this.dadosService.saveCli(this.formGroupCliente.value).subscribe(
           {
             next: data => {
               this.clientes.push(data);
@@ -80,7 +83,7 @@ export class ClientesComponent {
   }
 
   delete(cliente: Cliente) {
-    this.clienteService.delete(cliente).subscribe({
+    this.dadosService.deleteCli(cliente).subscribe({
       next: () => this.loadClientes()
     })
   }
@@ -91,6 +94,15 @@ export class ClientesComponent {
 
   get name(): any {
     return this.formGroupCliente.get("name")
+  }
+  get email(): any {
+    return this.formGroupCliente.get("email")
+  }
+  get cpf(): any {
+    return this.formGroupCliente.get("cpf")
+  }
+  get genero(): any {
+    return this.formGroupCliente.get("genero")
   }
 
   fecharModal() {

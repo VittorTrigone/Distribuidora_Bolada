@@ -17,15 +17,15 @@ import { NgxMaskModule } from "ngx-mask";
 import { CommonModule } from '@angular/common';
 import { CnpjMaskPipe } from './fornecedores/cnpj-mask.pipe';
 import { TelefoneMaskPipe } from './fornecedores/telefone-mask.pipe';
+import { CpfMaskPipe } from './clientes/cpf-mask.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
-    FornecedoresComponent,
     PaginaInicialComponent,
     CabecalhoComponent,
-    FornecedoresComponent, CnpjMaskPipe, TelefoneMaskPipe
+    FornecedoresComponent, CnpjMaskPipe, TelefoneMaskPipe, CpfMaskPipe
   ],
   imports: [
     BrowserModule,

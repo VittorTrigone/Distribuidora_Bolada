@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Fornecedor } from '../fornecedor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FornecedorService } from '../fornecedor.service';
+import { DadosService } from '../dados.service';
 
 import { CnpjMaskPipe } from './cnpj-mask.pipe';
 
@@ -31,8 +31,11 @@ export class FornecedoresComponent {
   telefoneMask = '(00) 0 0000-0000';
   cnpjMask = '00.000.000/0000-00';
 
-  constructor(private fornecedorService: FornecedorService,
-    private formBuilder: FormBuilder, private modalService: NgbModal) {
+  constructor(
+    private dadosService: DadosService,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal
+    ) {
     this.formGroupFornecedor = formBuilder.group({
       id: [''],
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -41,7 +44,9 @@ export class FornecedoresComponent {
       telefone: ['', [Validators.required]],
       endereco: ['', Validators.required],
       estado: ['', [Validators.required]],
-      cidade: ['', [Validators.required]]
+      cidade: ['', [Validators.required]],
+      tForn: ['', [Validators.required]],
+      termo: ['', [Validators.required]]
     })
   }
 
@@ -50,7 +55,7 @@ export class FornecedoresComponent {
   }
 
   loadFornecedores() {
-    this.fornecedorService.getFornecedor().subscribe(
+    this.dadosService.getFornecedor().subscribe(
       {
         next: data => this.fornecedores = data
       }
@@ -62,7 +67,7 @@ export class FornecedoresComponent {
 
     if (this.formGroupFornecedor.valid) {
       if (this.isEditing) {
-        this.fornecedorService.update(this.formGroupFornecedor.value).subscribe(
+        this.dadosService.updateForn(this.formGroupFornecedor.value).subscribe(
           {
             next: () => {
               this.loadFornecedores();
@@ -76,7 +81,7 @@ export class FornecedoresComponent {
         )
       }
       else {
-        this.fornecedorService.save(this.formGroupFornecedor.value).subscribe(
+        this.dadosService.saveForn(this.formGroupFornecedor.value).subscribe(
           {
             next: data => {
               this.fornecedores.push(data);
@@ -97,7 +102,7 @@ export class FornecedoresComponent {
   }
 
   delete(fornecedor: Fornecedor) {
-    this.fornecedorService.delete(fornecedor).subscribe({
+    this.dadosService.deleteForn(fornecedor).subscribe({
       next: () => this.loadFornecedores()
     })
   }
@@ -129,6 +134,12 @@ export class FornecedoresComponent {
   }
   get cidade(): any {
     return this.formGroupFornecedor.get("cidade")
+  }
+  get tForn(): any {
+    return this.formGroupFornecedor.get("tForn")
+  }
+  get termo(): any {
+    return this.formGroupFornecedor.get("termo")
   }
 
   fecharModal() {

@@ -9,10 +9,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Fornecedor</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Quantidade</th>
+                <th scope="col">Email</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Genero</th>
                 <th scope="col" class="teste">Opções</th>
             </tr>
         </thead>
@@ -20,10 +19,9 @@
             <tr *ngFor="let cliente of clientes">
                 <td scope="row">{{cliente.id}}</td>
                 <td>{{cliente.name}}</td>
-                <td>{{cliente.description}}</td>
-                <td>{{cliente.supplier}}</td>
-                <td>{{cliente.price}}</td>
-                <td>{{cliente.amont}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.cpf | cpfMask}}</td>
+                <td>{{cliente.genero}}</td>
                 <td>
                     <button (click)="open(EditarCliente)" class="btn btn-outline-primary me-1"
                         (click)="edit(cliente)">Editar</button>
@@ -44,30 +42,55 @@
                 <form [formGroup]="formGroupCliente">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome:</label>
-                        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+                        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome aqui.">
 
                         <div *ngIf="submitted && name.invalid">
                             <small class="text-danger">Nome Invalido!</small>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrição:</label>
-                        <input type="text" formControlName="description" class="form-control" id="description"
-                            placeholder="Descrição">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" formControlName="email" class="form-control" id="email"
+                            placeholder="Email aqui.">
+                            <div *ngIf="submitted && email.invalid">
+                                <small class="text-danger">Nome Invalido!</small>
+                            </div>
                     </div>
                     <div class="mb-3">
-                        <label for="supplier" class="form-label">Fornecedor:</label>
-                        <input type="text" formControlName="supplier" class="form-control" id="supplier"
-                            placeholder="Fornecedor">
+                        <label for="cpf" class="form-label">CPF:</label>
+                        <input type="text" formControlName="cpf" class="form-control" id="cpf"
+                            placeholder="CPF aqui." mask="{{ cpfMask }}">
+                            <div *ngIf="submitted && cpf.invalid">
+                                <small class="text-danger">Nome Invalido!</small>
+                            </div>
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Preço:</label>
-                        <input type="text" formControlName="price" class="form-control" id="price" placeholder="Preço">
-                    </div>
-                    <div class="mb-3">
-                        <label for="amont" class="form-label">Quantidade:</label>
-                        <input type="text" formControlName="amont" class="form-control" id="amont"
-                            placeholder="Quantidade">
+                        <label class="form-label">Genero:</label>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R1" value="Masculino">
+                            <label class="form-check-label" for="R1">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R2" value="Feminino">
+                            <label class="form-check-label" for="R2">
+                                Feminino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R2" value="Prefiro não responder">
+                            <label class="form-check-label" for="R2">
+                                Prefiro não responder
+                            </label>
+                        </div>
+
+                        <div *ngIf="submitted && genero.invalid">
+                            <small class="text-danger">Selecione uma opção!</small>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -90,25 +113,54 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome:</label>
                         <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+
+                        <div *ngIf="submitted && name.invalid">
+                            <small class="text-danger">Nome Invalido!</small>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrição:</label>
-                        <input type="text" formControlName="description" class="form-control" id="description"
-                            placeholder="Descrição">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" formControlName="email" class="form-control" id="email"
+                            placeholder="Email">
+                            <div *ngIf="submitted && email.invalid">
+                                <small class="text-danger">Nome Invalido!</small>
+                            </div>
                     </div>
                     <div class="mb-3">
-                        <label for="supplier" class="form-label">Fornecedor:</label>
-                        <input type="text" formControlName="supplier" class="form-control" id="supplier"
-                            placeholder="Fornecedor">
+                        <label for="cpf" class="form-label">CPF:</label>
+                        <input type="text" formControlName="cpf" class="form-control" id="cpf"
+                            placeholder="CPF" mask="{{ cpfMask }}">
+                            <div *ngIf="submitted && cpf.invalid">
+                                <small class="text-danger">Nome Invalido!</small>
+                            </div>
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Preço:</label>
-                        <input type="text" formControlName="price" class="form-control" id="price" placeholder="Preço">
-                    </div>
-                    <div class="mb-3">
-                        <label for="amont" class="form-label">Quantidade:</label>
-                        <input type="text" formControlName="amont" class="form-control" id="amont"
-                            placeholder="Quantidade">
+                        <label class="form-label">Genero:</label>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R1" value="Masculino">
+                            <label class="form-check-label" for="R1">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R2" value="Feminino">
+                            <label class="form-check-label" for="R2">
+                                Feminino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input formControlName="genero" name="flexRadioDefault" class="form-check-input" type="radio"
+                                id="R2" value="Prefiro não responder">
+                            <label class="form-check-label" for="R2">
+                                Prefiro não responder
+                            </label>
+                        </div>
+
+                        <div *ngIf="submitted && genero.invalid">
+                            <small class="text-danger">Selecione uma opção!</small>
+                        </div>
                     </div>
                 </form>
             </div>

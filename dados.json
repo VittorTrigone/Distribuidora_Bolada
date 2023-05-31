@@ -1,0 +1,12 @@
+{
+  "fornecedores": [],
+  "clientes": [
+    {
+      "id": 2,
+      "name": "Vittorddd",
+      "email": "Vittor.Trigone.Dias@gmail.com",
+      "cpf": "22222223423",
+      "genero": "Prefiro não responder"
+    }
+  ]
+}

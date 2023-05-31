@@ -6,9 +6,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start-server1": "json-server --watch cliente.json --port 3001",
-    "start-server2": "json-server --watch fornecedor.json --port 3002",
-    "start": "npm-run-all -p start-server1 start-server2"
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {
