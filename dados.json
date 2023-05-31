@@ -1,11 +1,62 @@
 {
-  "fornecedores": [],
-  "clientes": [
+  "fornecedores": [
+    {
+      "id": 1,
+      "name": "Narkevitz",
+      "email": "Narkevitz@gmail.com",
+      "cnpj": "23465721267434",
+      "telefone": "11940028922",
+      "endereco": "Rua Narkevitz, 334",
+      "estado": "São Paulo",
+      "cidade": "Itu",
+      "tForn": "Pessoa Física",
+      "termo": true
+    },
     {
       "id": 2,
-      "name": "Vittorddd",
-      "email": "Vittor.Trigone.Dias@gmail.com",
-      "cpf": "22222223423",
+      "name": "Um Nome Aleatório",
+      "email": "UmNomeAleatorio@outlook.com",
+      "cnpj": "74532465432362",
+      "telefone": "23965423463",
+      "endereco": "Rua Aleatória, 999",
+      "estado": "Amazonas",
+      "cidade": "Manaus",
+      "tForn": "Pessoa Jurídica",
+      "termo": true
+    },
+    {
+      "id": 3,
+      "name": "Adamastor",
+      "email": "Adamastor@gmail.com",
+      "cnpj": "58342345346547",
+      "telefone": "23932467346",
+      "endereco": "Adamastor Cristo, 597",
+      "estado": "São Paulo",
+      "cidade": "Itaquaquecetuba",
+      "tForn": "Pessoa Física",
+      "termo": true
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "name": "Rogerio",
+      "email": "Rogerio@gmail.com",
+      "cpf": "32657631243",
+      "genero": "Masculino"
+    },
+    {
+      "id": 2,
+      "name": "Fernanda",
+      "email": "Fernanda@outlook.com",
+      "cpf": "87945323464",
+      "genero": "Feminino"
+    },
+    {
+      "id": 3,
+      "name": "Fernando",
+      "email": "Fernando@gmail.com",
+      "cpf": "65478658523",
       "genero": "Prefiro não responder"
     }
   ]
